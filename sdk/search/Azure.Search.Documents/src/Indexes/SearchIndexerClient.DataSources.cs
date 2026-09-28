@@ -9,6 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Azure.Core;
 using Azure.Search.Documents.Indexes.Models;
+using Azure.Search.Documents.Utilities;
 
 namespace Azure.Search.Documents.Indexes
 {
@@ -164,8 +165,7 @@ namespace Azure.Search.Documents.Indexes
         public virtual Response<IReadOnlyList<SearchIndexerDataSourceConnection>> GetDataSourceConnections(
             CancellationToken cancellationToken = default)
         {
-            Response<ListDataSourcesResult> result = GetDataSourceConnections(new[] { Constants.All }, cancellationToken);
-            return Response.FromValue(result.Value.DataSources, result.GetRawResponse());
+            return GetDataSourceConnections(new[] { Constants.All }, cancellationToken: cancellationToken).ToBufferedList();
         }
 
         /// <summary>
@@ -178,8 +178,7 @@ namespace Azure.Search.Documents.Indexes
         public virtual async Task<Response<IReadOnlyList<SearchIndexerDataSourceConnection>>> GetDataSourceConnectionsAsync(
             CancellationToken cancellationToken = default)
         {
-            Response<ListDataSourcesResult> result = await GetDataSourceConnectionsAsync(new[] { Constants.All }, cancellationToken).ConfigureAwait(false);
-            return Response.FromValue(result.Value.DataSources, result.GetRawResponse());
+            return await GetDataSourceConnectionsAsync(new[] { Constants.All }, cancellationToken: cancellationToken).ToBufferedListAsync().ConfigureAwait(false);
         }
 
         /// <summary>
@@ -192,9 +191,8 @@ namespace Azure.Search.Documents.Indexes
         public virtual Response<IReadOnlyList<string>> GetDataSourceConnectionNames(
             CancellationToken cancellationToken = default)
         {
-            Response<ListDataSourcesResult> result = GetDataSourceConnections(new[] { Constants.NameKey }, cancellationToken);
-            IReadOnlyList<string> names = result.Value.DataSources.Select(value => value.Name).ToArray();
-            return Response.FromValue(names, result.GetRawResponse());
+            Response<IReadOnlyList<SearchIndexerDataSourceConnection>> response = GetDataSourceConnections(new[] { Constants.NameKey }, cancellationToken: cancellationToken).ToBufferedList();
+            return Response.FromValue<IReadOnlyList<string>>(response.Value.Select(value => value.Name).ToArray(), response.GetRawResponse());
         }
 
         /// <summary>
@@ -207,9 +205,8 @@ namespace Azure.Search.Documents.Indexes
         public virtual async Task<Response<IReadOnlyList<string>>> GetDataSourceConnectionNamesAsync(
             CancellationToken cancellationToken = default)
         {
-            Response<ListDataSourcesResult> result = await GetDataSourceConnectionsAsync(new[] { Constants.NameKey }, cancellationToken).ConfigureAwait(false);
-            IReadOnlyList<string> names = result.Value.DataSources.Select(value => value.Name).ToArray();
-            return Response.FromValue(names, result.GetRawResponse());
+            Response<IReadOnlyList<SearchIndexerDataSourceConnection>> response = await GetDataSourceConnectionsAsync(new[] { Constants.NameKey }, cancellationToken: cancellationToken).ToBufferedListAsync().ConfigureAwait(false);
+            return Response.FromValue<IReadOnlyList<string>>(response.Value.Select(value => value.Name).ToArray(), response.GetRawResponse());
         }
 
         #endregion

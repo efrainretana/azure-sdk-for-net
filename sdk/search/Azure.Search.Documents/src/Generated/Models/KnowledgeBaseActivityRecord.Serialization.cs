@@ -14,7 +14,7 @@ namespace Azure.Search.Documents.KnowledgeBases.Models
 {
     /// <summary>
     /// Base type for activity records. Tracks execution details, timing, and errors for knowledge base operations.
-    /// Please note this is the abstract base class. The derived classes available for instantiation are: <see cref="KnowledgeBaseModelWebSummarizationActivityRecord"/> and <see cref="KnowledgeBaseAgenticReasoningActivityRecord"/>.
+    /// Please note this is the abstract base class. The derived classes available for instantiation are: <see cref="KnowledgeBaseAgenticReasoningActivityRecord"/>, <see cref="KnowledgeBaseAzureBlobActivityRecord"/>, <see cref="KnowledgeBaseIndexedOneLakeActivityRecord"/>, <see cref="KnowledgeBaseModelWebSummarizationActivityRecord"/>, <see cref="KnowledgeBaseSearchIndexActivityRecord"/>, and <see cref="KnowledgeBaseWebActivityRecord"/>.
     /// </summary>
     [PersistableModelProxy(typeof(UnknownKnowledgeBaseActivityRecord))]
     public abstract partial class KnowledgeBaseActivityRecord : IJsonModel<KnowledgeBaseActivityRecord>
@@ -142,10 +142,18 @@ namespace Azure.Search.Documents.KnowledgeBases.Models
             {
                 switch (discriminator.GetString())
                 {
-                    case "modelWebSummarization":
-                        return KnowledgeBaseModelWebSummarizationActivityRecord.DeserializeKnowledgeBaseModelWebSummarizationActivityRecord(element, options);
                     case "agenticReasoning":
                         return KnowledgeBaseAgenticReasoningActivityRecord.DeserializeKnowledgeBaseAgenticReasoningActivityRecord(element, options);
+                    case "azureBlob":
+                        return KnowledgeBaseAzureBlobActivityRecord.DeserializeKnowledgeBaseAzureBlobActivityRecord(element, options);
+                    case "indexedOneLake":
+                        return KnowledgeBaseIndexedOneLakeActivityRecord.DeserializeKnowledgeBaseIndexedOneLakeActivityRecord(element, options);
+                    case "modelWebSummarization":
+                        return KnowledgeBaseModelWebSummarizationActivityRecord.DeserializeKnowledgeBaseModelWebSummarizationActivityRecord(element, options);
+                    case "searchIndex":
+                        return KnowledgeBaseSearchIndexActivityRecord.DeserializeKnowledgeBaseSearchIndexActivityRecord(element, options);
+                    case "web":
+                        return KnowledgeBaseWebActivityRecord.DeserializeKnowledgeBaseWebActivityRecord(element, options);
                 }
             }
             return UnknownKnowledgeBaseActivityRecord.DeserializeUnknownKnowledgeBaseActivityRecord(element, options);

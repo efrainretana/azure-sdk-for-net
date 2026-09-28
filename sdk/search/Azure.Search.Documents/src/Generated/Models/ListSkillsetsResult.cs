@@ -19,19 +19,19 @@ namespace Azure.Search.Documents.Indexes.Models
         /// <summary> Initializes a new instance of <see cref="ListSkillsetsResult"/>. </summary>
         internal ListSkillsetsResult()
         {
-            Skillsets = new ChangeTrackingList<SearchIndexerSkillset>();
+            Value = new ChangeTrackingList<SearchIndexerSkillset>();
         }
 
         /// <summary> Initializes a new instance of <see cref="ListSkillsetsResult"/>. </summary>
-        /// <param name="skillsets"> The skillsets defined in the Search service. </param>
+        /// <param name="value"> The skillsets defined in the Search service. </param>
         /// <param name="additionalBinaryDataProperties"> Keeps track of any properties unknown to the library. </param>
-        internal ListSkillsetsResult(IReadOnlyList<SearchIndexerSkillset> skillsets, IDictionary<string, BinaryData> additionalBinaryDataProperties)
+        internal ListSkillsetsResult(IReadOnlyList<SearchIndexerSkillset> value, IDictionary<string, BinaryData> additionalBinaryDataProperties)
         {
-            Skillsets = skillsets;
+            Value = value;
             _additionalBinaryDataProperties = additionalBinaryDataProperties;
         }
 
         /// <summary> The skillsets defined in the Search service. </summary>
-        public IReadOnlyList<SearchIndexerSkillset> Skillsets { get; }
+        public IReadOnlyList<SearchIndexerSkillset> Value { get; }
     }
 }

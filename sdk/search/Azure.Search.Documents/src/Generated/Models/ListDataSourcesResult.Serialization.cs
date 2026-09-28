@@ -85,7 +85,7 @@ namespace Azure.Search.Documents.Indexes.Models
             {
                 writer.WritePropertyName("value"u8);
                 writer.WriteStartArray();
-                foreach (SearchIndexerDataSourceConnection item in DataSources)
+                foreach (SearchIndexerDataSourceConnection item in Value)
                 {
                     writer.WriteObjectValue(item, options);
                 }
@@ -133,7 +133,7 @@ namespace Azure.Search.Documents.Indexes.Models
             {
                 return null;
             }
-            IReadOnlyList<SearchIndexerDataSourceConnection> dataSources = default;
+            IReadOnlyList<SearchIndexerDataSourceConnection> value = default;
             IDictionary<string, BinaryData> additionalBinaryDataProperties = new ChangeTrackingDictionary<string, BinaryData>();
             foreach (var prop in element.EnumerateObject())
             {
@@ -144,15 +144,15 @@ namespace Azure.Search.Documents.Indexes.Models
                     {
                         array.Add(SearchIndexerDataSourceConnection.DeserializeSearchIndexerDataSourceConnection(item, options));
                     }
-                    dataSources = array;
+                    value = array;
                     continue;
                 }
                 if (options.Format != "W")
                 {
-                    additionalBinaryDataProperties.Add(prop.Name, BinaryData.FromString(prop.Value.GetRawText()));
+                    additionalBinaryDataProperties.Add(prop.Name, prop.Value.GetUtf8Bytes());
                 }
             }
-            return new ListDataSourcesResult(dataSources, additionalBinaryDataProperties);
+            return new ListDataSourcesResult(value, additionalBinaryDataProperties);
         }
     }
 }

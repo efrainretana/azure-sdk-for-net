@@ -85,7 +85,7 @@ namespace Azure.Search.Documents.Indexes.Models
             {
                 writer.WritePropertyName("value"u8);
                 writer.WriteStartArray();
-                foreach (SearchIndex item in Indexes)
+                foreach (SearchIndex item in Value)
                 {
                     writer.WriteObjectValue(item, options);
                 }
@@ -133,7 +133,7 @@ namespace Azure.Search.Documents.Indexes.Models
             {
                 return null;
             }
-            IReadOnlyList<SearchIndex> indexes = default;
+            IReadOnlyList<SearchIndex> value = default;
             IDictionary<string, BinaryData> additionalBinaryDataProperties = new ChangeTrackingDictionary<string, BinaryData>();
             foreach (var prop in element.EnumerateObject())
             {
@@ -144,15 +144,15 @@ namespace Azure.Search.Documents.Indexes.Models
                     {
                         array.Add(SearchIndex.DeserializeSearchIndex(item, options));
                     }
-                    indexes = array;
+                    value = array;
                     continue;
                 }
                 if (options.Format != "W")
                 {
-                    additionalBinaryDataProperties.Add(prop.Name, BinaryData.FromString(prop.Value.GetRawText()));
+                    additionalBinaryDataProperties.Add(prop.Name, prop.Value.GetUtf8Bytes());
                 }
             }
-            return new ListIndexesResult(indexes, additionalBinaryDataProperties);
+            return new ListIndexesResult(value, additionalBinaryDataProperties);
         }
     }
 }

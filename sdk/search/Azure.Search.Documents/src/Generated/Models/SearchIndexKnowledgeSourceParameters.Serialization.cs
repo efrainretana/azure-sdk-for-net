@@ -195,7 +195,7 @@ namespace Azure.Search.Documents.Indexes.Models
                 }
                 if (options.Format != "W")
                 {
-                    additionalBinaryDataProperties.Add(prop.Name, BinaryData.FromString(prop.Value.GetRawText()));
+                    additionalBinaryDataProperties.Add(prop.Name, prop.Value.GetUtf8Bytes());
                 }
             }
             return new SearchIndexKnowledgeSourceParameters(searchIndexName, sourceDataFields ?? new ChangeTrackingList<SearchIndexFieldReference>(), searchFields ?? new ChangeTrackingList<SearchIndexFieldReference>(), semanticConfigurationName, additionalBinaryDataProperties);

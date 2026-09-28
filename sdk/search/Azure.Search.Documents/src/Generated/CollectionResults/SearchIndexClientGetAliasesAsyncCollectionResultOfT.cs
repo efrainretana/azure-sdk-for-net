@@ -40,7 +40,7 @@ namespace Azure.Search.Documents.Indexes
         {
             Response response = await GetNextResponseAsync(pageSizeHint, null).ConfigureAwait(false);
             ListAliasesResult result = (ListAliasesResult)response;
-            yield return Page<SearchAlias>.FromValues(result.Aliases, null, response);
+            yield return Page<SearchAlias>.FromValues(result.Value, null, response);
         }
 
         /// <summary> Get next page. </summary>

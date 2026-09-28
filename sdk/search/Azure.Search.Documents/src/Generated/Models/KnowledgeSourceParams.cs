@@ -13,7 +13,7 @@ namespace Azure.Search.Documents.KnowledgeBases.Models
 {
     /// <summary>
     /// Base type for knowledge source runtime parameters.
-    /// Please note this is the abstract base class. The derived classes available for instantiation are: <see cref="SearchIndexKnowledgeSourceParams"/>, <see cref="AzureBlobKnowledgeSourceParams"/>, <see cref="IndexedOneLakeKnowledgeSourceParams"/>, and <see cref="WebKnowledgeSourceParams"/>.
+    /// Please note this is the abstract base class. The derived classes available for instantiation are: <see cref="AzureBlobKnowledgeSourceParams"/>, <see cref="IndexedOneLakeKnowledgeSourceParams"/>, <see cref="SearchIndexKnowledgeSourceParams"/>, and <see cref="WebKnowledgeSourceParams"/>.
     /// </summary>
     public abstract partial class KnowledgeSourceParams
     {

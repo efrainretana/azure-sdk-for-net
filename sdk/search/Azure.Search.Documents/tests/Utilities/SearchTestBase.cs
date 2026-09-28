@@ -23,9 +23,11 @@ namespace Azure.Search.Documents.Tests
     /// Base class for Search unit tests that adds shared infrastructure on top
     /// of the Azure.Core testing framework.
     /// </summary>
-    [ClientTestFixture(SearchClientOptions.ServiceVersion.V2024_07_01)]
+    [ClientTestFixture(SearchClientOptions.ServiceVersion.V2024_07_01, LatestVersion)]
     public abstract partial class SearchTestBase : RecordedTestBase<SearchTestEnvironment>
     {
+        protected const SearchClientOptions.ServiceVersion LatestVersion = SearchClientOptions.ServiceVersion.V2026_04_01;
+
         /// <summary>
         /// Shared HTTP client instance with a longer timeout.  It's
         /// gratuitously long for the sake of live tests in a hammered

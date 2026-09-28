@@ -16,7 +16,7 @@ namespace Azure.Search.Documents.Indexes.Models
 {
     /// <summary>
     /// Represents a knowledge source definition.
-    /// Please note this is the abstract base class. The derived classes available for instantiation are: <see cref="SearchIndexKnowledgeSource"/>, <see cref="AzureBlobKnowledgeSource"/>, <see cref="IndexedOneLakeKnowledgeSource"/>, and <see cref="WebKnowledgeSource"/>.
+    /// Please note this is the abstract base class. The derived classes available for instantiation are: <see cref="AzureBlobKnowledgeSource"/>, <see cref="IndexedOneLakeKnowledgeSource"/>, <see cref="SearchIndexKnowledgeSource"/>, and <see cref="WebKnowledgeSource"/>.
     /// </summary>
     [PersistableModelProxy(typeof(UnknownKnowledgeSource))]
     public abstract partial class KnowledgeSource : IJsonModel<KnowledgeSource>
@@ -166,12 +166,12 @@ namespace Azure.Search.Documents.Indexes.Models
             {
                 switch (discriminator.GetString())
                 {
-                    case "searchIndex":
-                        return SearchIndexKnowledgeSource.DeserializeSearchIndexKnowledgeSource(element, options);
                     case "azureBlob":
                         return AzureBlobKnowledgeSource.DeserializeAzureBlobKnowledgeSource(element, options);
                     case "indexedOneLake":
                         return IndexedOneLakeKnowledgeSource.DeserializeIndexedOneLakeKnowledgeSource(element, options);
+                    case "searchIndex":
+                        return SearchIndexKnowledgeSource.DeserializeSearchIndexKnowledgeSource(element, options);
                     case "web":
                         return WebKnowledgeSource.DeserializeWebKnowledgeSource(element, options);
                 }

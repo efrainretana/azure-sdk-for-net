@@ -12,7 +12,7 @@ namespace Azure.Search.Documents.KnowledgeBases.Models
 {
     /// <summary>
     /// Base type for activity records. Tracks execution details, timing, and errors for knowledge base operations.
-    /// Please note this is the abstract base class. The derived classes available for instantiation are: <see cref="KnowledgeBaseModelWebSummarizationActivityRecord"/> and <see cref="KnowledgeBaseAgenticReasoningActivityRecord"/>.
+    /// Please note this is the abstract base class. The derived classes available for instantiation are: <see cref="KnowledgeBaseAgenticReasoningActivityRecord"/>, <see cref="KnowledgeBaseAzureBlobActivityRecord"/>, <see cref="KnowledgeBaseIndexedOneLakeActivityRecord"/>, <see cref="KnowledgeBaseModelWebSummarizationActivityRecord"/>, <see cref="KnowledgeBaseSearchIndexActivityRecord"/>, and <see cref="KnowledgeBaseWebActivityRecord"/>.
     /// </summary>
     public abstract partial class KnowledgeBaseActivityRecord
     {

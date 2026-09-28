@@ -19,19 +19,19 @@ namespace Azure.Search.Documents.Indexes.Models
         /// <summary> Initializes a new instance of <see cref="ListIndexesResult"/>. </summary>
         internal ListIndexesResult()
         {
-            Indexes = new ChangeTrackingList<SearchIndex>();
+            Value = new ChangeTrackingList<SearchIndex>();
         }
 
         /// <summary> Initializes a new instance of <see cref="ListIndexesResult"/>. </summary>
-        /// <param name="indexes"> The indexes in the Search service. </param>
+        /// <param name="value"> The indexes in the Search service. </param>
         /// <param name="additionalBinaryDataProperties"> Keeps track of any properties unknown to the library. </param>
-        internal ListIndexesResult(IReadOnlyList<SearchIndex> indexes, IDictionary<string, BinaryData> additionalBinaryDataProperties)
+        internal ListIndexesResult(IReadOnlyList<SearchIndex> value, IDictionary<string, BinaryData> additionalBinaryDataProperties)
         {
-            Indexes = indexes;
+            Value = value;
             _additionalBinaryDataProperties = additionalBinaryDataProperties;
         }
 
         /// <summary> The indexes in the Search service. </summary>
-        public IReadOnlyList<SearchIndex> Indexes { get; }
+        public IReadOnlyList<SearchIndex> Value { get; }
     }
 }

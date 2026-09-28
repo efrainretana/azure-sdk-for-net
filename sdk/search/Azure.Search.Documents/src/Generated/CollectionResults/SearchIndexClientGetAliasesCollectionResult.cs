@@ -42,9 +42,9 @@ namespace Azure.Search.Documents.Indexes
             Response response = GetNextResponse(pageSizeHint, null);
             ListAliasesResult result = (ListAliasesResult)response;
             List<BinaryData> items = new List<BinaryData>();
-            foreach (var item in result.Aliases)
+            foreach (var item in result.Value)
             {
-                items.Add(ModelReaderWriter.Write(item, ModelSerializationExtensions.WireOptions, AzureSearchDocumentsContext.Default));
+                items.Add(ModelReaderWriter.Write(item, ModelReaderWriterOptions.Json, AzureSearchDocumentsContext.Default));
             }
             yield return Page<BinaryData>.FromValues(items, null, response);
         }

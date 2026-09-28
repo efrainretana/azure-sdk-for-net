@@ -19,19 +19,19 @@ namespace Azure.Search.Documents.Indexes.Models
         /// <summary> Initializes a new instance of <see cref="ListDataSourcesResult"/>. </summary>
         internal ListDataSourcesResult()
         {
-            DataSources = new ChangeTrackingList<SearchIndexerDataSourceConnection>();
+            Value = new ChangeTrackingList<SearchIndexerDataSourceConnection>();
         }
 
         /// <summary> Initializes a new instance of <see cref="ListDataSourcesResult"/>. </summary>
-        /// <param name="dataSources"> The datasources in the Search service. </param>
+        /// <param name="value"> The datasources in the Search service. </param>
         /// <param name="additionalBinaryDataProperties"> Keeps track of any properties unknown to the library. </param>
-        internal ListDataSourcesResult(IReadOnlyList<SearchIndexerDataSourceConnection> dataSources, IDictionary<string, BinaryData> additionalBinaryDataProperties)
+        internal ListDataSourcesResult(IReadOnlyList<SearchIndexerDataSourceConnection> value, IDictionary<string, BinaryData> additionalBinaryDataProperties)
         {
-            DataSources = dataSources;
+            Value = value;
             _additionalBinaryDataProperties = additionalBinaryDataProperties;
         }
 
         /// <summary> The datasources in the Search service. </summary>
-        public IReadOnlyList<SearchIndexerDataSourceConnection> DataSources { get; }
+        public IReadOnlyList<SearchIndexerDataSourceConnection> Value { get; }
     }
 }

@@ -14,7 +14,7 @@ namespace Azure.Search.Documents.KnowledgeBases.Models
 {
     /// <summary>
     /// Base type for references.
-    /// Please note this is the abstract base class. The derived classes available for instantiation are: <see cref="KnowledgeBaseSearchIndexReference"/>, <see cref="KnowledgeBaseAzureBlobReference"/>, <see cref="KnowledgeBaseIndexedOneLakeReference"/>, and <see cref="KnowledgeBaseWebReference"/>.
+    /// Please note this is the abstract base class. The derived classes available for instantiation are: <see cref="KnowledgeBaseAzureBlobReference"/>, <see cref="KnowledgeBaseIndexedOneLakeReference"/>, <see cref="KnowledgeBaseSearchIndexReference"/>, and <see cref="KnowledgeBaseWebReference"/>.
     /// </summary>
     [PersistableModelProxy(typeof(UnknownKnowledgeBaseReference))]
     public abstract partial class KnowledgeBaseReference : IJsonModel<KnowledgeBaseReference>
@@ -162,12 +162,12 @@ namespace Azure.Search.Documents.KnowledgeBases.Models
             {
                 switch (discriminator.GetString())
                 {
-                    case "searchIndex":
-                        return KnowledgeBaseSearchIndexReference.DeserializeKnowledgeBaseSearchIndexReference(element, options);
                     case "azureBlob":
                         return KnowledgeBaseAzureBlobReference.DeserializeKnowledgeBaseAzureBlobReference(element, options);
                     case "indexedOneLake":
                         return KnowledgeBaseIndexedOneLakeReference.DeserializeKnowledgeBaseIndexedOneLakeReference(element, options);
+                    case "searchIndex":
+                        return KnowledgeBaseSearchIndexReference.DeserializeKnowledgeBaseSearchIndexReference(element, options);
                     case "web":
                         return KnowledgeBaseWebReference.DeserializeKnowledgeBaseWebReference(element, options);
                 }

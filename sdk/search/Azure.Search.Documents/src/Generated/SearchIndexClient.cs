@@ -322,20 +322,9 @@ namespace Azure.Search.Documents.Indexes
         /// <param name="context"> The request options, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. </returns>
-        internal virtual Response GetSynonymMaps(IEnumerable<string> @select, RequestContext context)
+        internal virtual Pageable<BinaryData> GetSynonymMaps(IEnumerable<string> @select, RequestContext context)
         {
-            using DiagnosticScope scope = ClientDiagnostics.CreateScope("SearchIndexClient.GetSynonymMaps");
-            scope.Start();
-            try
-            {
-                using HttpMessage message = CreateGetSynonymMapsRequest(@select, context);
-                return Pipeline.ProcessMessage(message, context);
-            }
-            catch (Exception e)
-            {
-                scope.Failed(e);
-                throw;
-            }
+            return new SearchIndexClientGetSynonymMapsCollectionResult(this, @select, context, "SearchIndexClient.GetSynonymMaps");
         }
 
         /// <summary>
@@ -350,40 +339,27 @@ namespace Azure.Search.Documents.Indexes
         /// <param name="context"> The request options, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. </returns>
-        internal virtual async Task<Response> GetSynonymMapsAsync(IEnumerable<string> @select, RequestContext context)
+        internal virtual AsyncPageable<BinaryData> GetSynonymMapsAsync(IEnumerable<string> @select, RequestContext context)
         {
-            using DiagnosticScope scope = ClientDiagnostics.CreateScope("SearchIndexClient.GetSynonymMaps");
-            scope.Start();
-            try
-            {
-                using HttpMessage message = CreateGetSynonymMapsRequest(@select, context);
-                return await Pipeline.ProcessMessageAsync(message, context).ConfigureAwait(false);
-            }
-            catch (Exception e)
-            {
-                scope.Failed(e);
-                throw;
-            }
+            return new SearchIndexClientGetSynonymMapsAsyncCollectionResult(this, @select, context, "SearchIndexClient.GetSynonymMaps");
         }
 
         /// <summary> Lists all synonym maps available for a search service. </summary>
         /// <param name="select"> Selects which top-level properties to retrieve. Specified as a comma-separated list of JSON property names, or '*' for all properties. The default is all properties. </param>
         /// <param name="cancellationToken"> The cancellation token that can be used to cancel the operation. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
-        internal virtual Response<ListSynonymMapsResult> GetSynonymMaps(IEnumerable<string> @select = default, CancellationToken cancellationToken = default)
+        internal virtual Pageable<SynonymMap> GetSynonymMaps(IEnumerable<string> @select = default, CancellationToken cancellationToken = default)
         {
-            Response result = GetSynonymMaps(@select, cancellationToken.ToRequestContext());
-            return Response.FromValue((ListSynonymMapsResult)result, result);
+            return new SearchIndexClientGetSynonymMapsCollectionResultOfT(this, @select, cancellationToken.ToRequestContext(), "SearchIndexClient.GetSynonymMaps");
         }
 
         /// <summary> Lists all synonym maps available for a search service. </summary>
         /// <param name="select"> Selects which top-level properties to retrieve. Specified as a comma-separated list of JSON property names, or '*' for all properties. The default is all properties. </param>
         /// <param name="cancellationToken"> The cancellation token that can be used to cancel the operation. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
-        internal virtual async Task<Response<ListSynonymMapsResult>> GetSynonymMapsAsync(IEnumerable<string> @select = default, CancellationToken cancellationToken = default)
+        internal virtual AsyncPageable<SynonymMap> GetSynonymMapsAsync(IEnumerable<string> @select = default, CancellationToken cancellationToken = default)
         {
-            Response result = await GetSynonymMapsAsync(@select, cancellationToken.ToRequestContext()).ConfigureAwait(false);
-            return Response.FromValue((ListSynonymMapsResult)result, result);
+            return new SearchIndexClientGetSynonymMapsAsyncCollectionResultOfT(this, @select, cancellationToken.ToRequestContext(), "SearchIndexClient.GetSynonymMaps");
         }
 
         /// <summary>

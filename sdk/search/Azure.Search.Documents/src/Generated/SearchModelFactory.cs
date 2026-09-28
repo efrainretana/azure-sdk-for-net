@@ -116,7 +116,7 @@ namespace Azure.Search.Documents.Models
 
         /// <summary>
         /// The query parameters for vector and hybrid search queries.
-        /// Please note this is the abstract base class. The derived classes available for instantiation are: <see cref="Models.VectorizedQuery"/>, <see cref="Models.VectorizableTextQuery"/>, <see cref="Models.VectorizableImageUrlQuery"/>, and <see cref="Models.VectorizableImageBinaryQuery"/>.
+        /// Please note this is the abstract base class. The derived classes available for instantiation are: <see cref="Models.VectorizableImageBinaryQuery"/>, <see cref="Models.VectorizableImageUrlQuery"/>, <see cref="Models.VectorizableTextQuery"/>, and <see cref="Models.VectorizedQuery"/>.
         /// </summary>
         /// <param name="kNearestNeighborsCount"> Number of nearest neighbors to return as top hits. </param>
         /// <param name="fieldsRaw"> Vector Fields of type Collection(Edm.Single) to be included in the vector searched. </param>
@@ -195,7 +195,7 @@ namespace Azure.Search.Documents.Models
                 exhaustive,
                 oversampling,
                 weight,
-                VectorQueryKind.ImageUrl,
+                VectorQueryKind.ImageUri,
                 additionalBinaryDataProperties: null,
                 url);
         }
@@ -505,7 +505,10 @@ namespace Azure.Search.Documents.Models
             return new TextWeights(weights, additionalBinaryDataProperties: null);
         }
 
-        /// <summary> Base type for functions that can modify document scores during ranking. </summary>
+        /// <summary>
+        /// Base type for functions that can modify document scores during ranking.
+        /// Please note this is the base class. The derived classes available for instantiation are: <see cref="Indexes.Models.DistanceScoringFunction"/>, <see cref="Indexes.Models.FreshnessScoringFunction"/>, <see cref="Indexes.Models.MagnitudeScoringFunction"/>, and <see cref="Indexes.Models.TagScoringFunction"/>.
+        /// </summary>
         /// <param name="fieldName"> The name of the field used as input to the scoring function. </param>
         /// <param name="boost"> A multiplier for the raw score. Must be a positive number not equal to 1.0. </param>
         /// <param name="interpolation"> A value indicating how boosting will be interpolated across document scores; defaults to "Linear". </param>
@@ -1175,7 +1178,10 @@ namespace Azure.Search.Documents.Models
             return new PatternReplaceCharFilter("#Microsoft.Azure.Search.PatternReplaceCharFilter", name, additionalBinaryDataProperties: null, pattern, replacement);
         }
 
-        /// <summary> Base type for normalizers. </summary>
+        /// <summary>
+        /// Base type for normalizers.
+        /// Please note this is the base class. The derived classes available for instantiation are: <see cref="Indexes.Models.CustomNormalizer"/>.
+        /// </summary>
         /// <param name="odataType"> The discriminator for derived types. </param>
         /// <param name="name"> The name of the char filter. It must only contain letters, digits, spaces, dashes or underscores, can only start and end with alphanumeric characters, and is limited to 128 characters. </param>
         /// <returns> A new <see cref="Indexes.Models.LexicalNormalizer"/> instance for mocking. </returns>
@@ -1284,7 +1290,7 @@ namespace Azure.Search.Documents.Models
 
         /// <summary>
         /// Contains configuration options specific to the algorithm used during indexing or querying.
-        /// Please note this is the abstract base class. The derived classes available for instantiation are: <see cref="Indexes.Models.HnswAlgorithmConfiguration"/> and <see cref="Indexes.Models.ExhaustiveKnnAlgorithmConfiguration"/>.
+        /// Please note this is the abstract base class. The derived classes available for instantiation are: <see cref="Indexes.Models.ExhaustiveKnnAlgorithmConfiguration"/> and <see cref="Indexes.Models.HnswAlgorithmConfiguration"/>.
         /// </summary>
         /// <param name="name"> The name to associate with this particular configuration. </param>
         /// <param name="kind"> Type of VectorSearchAlgorithmConfiguration. </param>
@@ -1333,7 +1339,7 @@ namespace Azure.Search.Documents.Models
 
         /// <summary>
         /// Specifies the vectorization method to be used during query time.
-        /// Please note this is the abstract base class. The derived classes available for instantiation are: <see cref="Indexes.Models.AzureOpenAIVectorizer"/>, <see cref="Indexes.Models.WebApiVectorizer"/>, and <see cref="Indexes.Models.AzureMachineLearningVectorizer"/>.
+        /// Please note this is the abstract base class. The derived classes available for instantiation are: <see cref="Indexes.Models.AzureMachineLearningVectorizer"/>, <see cref="Indexes.Models.AzureOpenAIVectorizer"/>, and <see cref="Indexes.Models.WebApiVectorizer"/>.
         /// </summary>
         /// <param name="vectorizerName"> The name to associate with this particular vectorization method. </param>
         /// <param name="kind"> Type of VectorSearchVectorizer. </param>
@@ -1432,7 +1438,7 @@ namespace Azure.Search.Documents.Models
 
         /// <summary>
         /// Contains configuration options specific to the compression method used during indexing or querying.
-        /// Please note this is the abstract base class. The derived classes available for instantiation are: <see cref="Indexes.Models.ScalarQuantizationCompression"/> and <see cref="Indexes.Models.BinaryQuantizationCompression"/>.
+        /// Please note this is the abstract base class. The derived classes available for instantiation are: <see cref="Indexes.Models.BinaryQuantizationCompression"/> and <see cref="Indexes.Models.ScalarQuantizationCompression"/>.
         /// </summary>
         /// <param name="compressionName"> The name to associate with this particular configuration. </param>
         /// <param name="rescoringOptions"> Contains the options for rescoring. </param>
@@ -1637,7 +1643,7 @@ namespace Azure.Search.Documents.Models
 
         /// <summary>
         /// Represents a knowledge source definition.
-        /// Please note this is the abstract base class. The derived classes available for instantiation are: <see cref="Indexes.Models.SearchIndexKnowledgeSource"/>, <see cref="Indexes.Models.AzureBlobKnowledgeSource"/>, <see cref="Indexes.Models.IndexedOneLakeKnowledgeSource"/>, and <see cref="Indexes.Models.WebKnowledgeSource"/>.
+        /// Please note this is the abstract base class. The derived classes available for instantiation are: <see cref="Indexes.Models.AzureBlobKnowledgeSource"/>, <see cref="Indexes.Models.IndexedOneLakeKnowledgeSource"/>, <see cref="Indexes.Models.SearchIndexKnowledgeSource"/>, and <see cref="Indexes.Models.WebKnowledgeSource"/>.
         /// </summary>
         /// <param name="name"> The name of the knowledge source. </param>
         /// <param name="description"> Optional user-defined description. </param>
@@ -2204,7 +2210,10 @@ namespace Azure.Search.Documents.Models
                 additionalBinaryDataProperties: null);
         }
 
-        /// <summary> Base type for skills. </summary>
+        /// <summary>
+        /// Base type for skills.
+        /// Please note this is the base class. The derived classes available for instantiation are: <see cref="Indexes.Models.AzureOpenAIEmbeddingSkill"/>, <see cref="Indexes.Models.ChatCompletionSkill"/>, <see cref="Indexes.Models.ConditionalSkill"/>, <see cref="Indexes.Models.ContentUnderstandingSkill"/>, <see cref="Indexes.Models.CustomEntityLookupSkill"/>, <see cref="Indexes.Models.DocumentExtractionSkill"/>, <see cref="Indexes.Models.DocumentIntelligenceLayoutSkill"/>, <see cref="Indexes.Models.EntityLinkingSkill"/>, <see cref="Indexes.Models.EntityRecognitionSkill"/>, <see cref="Indexes.Models.ImageAnalysisSkill"/>, <see cref="Indexes.Models.KeyPhraseExtractionSkill"/>, <see cref="Indexes.Models.LanguageDetectionSkill"/>, <see cref="Indexes.Models.MergeSkill"/>, <see cref="Indexes.Models.OcrSkill"/>, <see cref="Indexes.Models.PiiDetectionSkill"/>, <see cref="Indexes.Models.SentimentSkill"/>, <see cref="Indexes.Models.ShaperSkill"/>, <see cref="Indexes.Models.SplitSkill"/>, <see cref="Indexes.Models.TextTranslationSkill"/>, and <see cref="Indexes.Models.WebApiSkill"/>.
+        /// </summary>
         /// <param name="odataType"> The discriminator for derived types. </param>
         /// <param name="name"> The name of the skill which uniquely identifies it within the skillset. A skill with no name defined will be given a default name of its 1-based index in the skills array, prefixed with the character '#'. </param>
         /// <param name="description"> The description of the skill which describes the inputs, outputs, and usage of the skill. </param>
@@ -3219,7 +3228,7 @@ namespace Azure.Search.Documents.Models
 
         /// <summary>
         /// Base type for knowledge source runtime parameters.
-        /// Please note this is the abstract base class. The derived classes available for instantiation are: <see cref="KnowledgeBases.Models.SearchIndexKnowledgeSourceParams"/>, <see cref="KnowledgeBases.Models.AzureBlobKnowledgeSourceParams"/>, <see cref="KnowledgeBases.Models.IndexedOneLakeKnowledgeSourceParams"/>, and <see cref="KnowledgeBases.Models.WebKnowledgeSourceParams"/>.
+        /// Please note this is the abstract base class. The derived classes available for instantiation are: <see cref="KnowledgeBases.Models.AzureBlobKnowledgeSourceParams"/>, <see cref="KnowledgeBases.Models.IndexedOneLakeKnowledgeSourceParams"/>, <see cref="KnowledgeBases.Models.SearchIndexKnowledgeSourceParams"/>, and <see cref="KnowledgeBases.Models.WebKnowledgeSourceParams"/>.
         /// </summary>
         /// <param name="knowledgeSourceName"> The name of the index the params apply to. </param>
         /// <param name="includeReferences"> Indicates whether references should be included for data retrieved from this source. </param>
@@ -3343,7 +3352,7 @@ namespace Azure.Search.Documents.Models
 
         /// <summary>
         /// Specifies the type of the message content.
-        /// Please note this is the abstract base class. The derived classes available for instantiation are: <see cref="KnowledgeBases.Models.KnowledgeBaseMessageTextContent"/> and <see cref="KnowledgeBases.Models.KnowledgeBaseMessageImageContent"/>.
+        /// Please note this is the abstract base class. The derived classes available for instantiation are: <see cref="KnowledgeBases.Models.KnowledgeBaseMessageImageContent"/> and <see cref="KnowledgeBases.Models.KnowledgeBaseMessageTextContent"/>.
         /// </summary>
         /// <param name="type"> The type of the message. </param>
         /// <returns> A new <see cref="KnowledgeBases.Models.KnowledgeBaseMessageContent"/> instance for mocking. </returns>
@@ -3378,7 +3387,7 @@ namespace Azure.Search.Documents.Models
 
         /// <summary>
         /// Base type for activity records. Tracks execution details, timing, and errors for knowledge base operations.
-        /// Please note this is the abstract base class. The derived classes available for instantiation are: <see cref="KnowledgeBases.Models.KnowledgeBaseModelWebSummarizationActivityRecord"/> and <see cref="KnowledgeBases.Models.KnowledgeBaseAgenticReasoningActivityRecord"/>.
+        /// Please note this is the abstract base class. The derived classes available for instantiation are: <see cref="KnowledgeBases.Models.KnowledgeBaseAgenticReasoningActivityRecord"/>, <see cref="KnowledgeBases.Models.KnowledgeBaseAzureBlobActivityRecord"/>, <see cref="KnowledgeBases.Models.KnowledgeBaseIndexedOneLakeActivityRecord"/>, <see cref="KnowledgeBases.Models.KnowledgeBaseModelWebSummarizationActivityRecord"/>, <see cref="KnowledgeBases.Models.KnowledgeBaseSearchIndexActivityRecord"/>, and <see cref="KnowledgeBases.Models.KnowledgeBaseWebActivityRecord"/>.
         /// </summary>
         /// <param name="id"> The ID of the activity record. </param>
         /// <param name="type"> The type of the activity record. </param>
@@ -3420,6 +3429,153 @@ namespace Azure.Search.Documents.Models
             info ??= new ChangeTrackingDictionary<string, BinaryData>();
 
             return new KnowledgeBaseErrorAdditionalInfo(@type, info, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> Represents a search index retrieval activity record. </summary>
+        /// <param name="id"> The ID of the activity record. </param>
+        /// <param name="elapsedMs"> The elapsed time in milliseconds for the retrieval activity. </param>
+        /// <param name="error"> The error detail explaining why the operation failed. This property is only included when the activity does not succeed. </param>
+        /// <param name="knowledgeSourceName"> The knowledge source for the retrieval activity. </param>
+        /// <param name="queryOn"> The query time for this retrieval activity. </param>
+        /// <param name="count"> The count of documents retrieved that were sufficiently relevant to pass the reranker threshold. </param>
+        /// <param name="searchIndexArguments"> The search index arguments for the retrieval activity. </param>
+        /// <returns> A new <see cref="KnowledgeBases.Models.KnowledgeBaseSearchIndexActivityRecord"/> instance for mocking. </returns>
+        public static KnowledgeBaseSearchIndexActivityRecord KnowledgeBaseSearchIndexActivityRecord(int id = default, int? elapsedMs = default, KnowledgeBaseErrorDetail error = default, string knowledgeSourceName = default, DateTimeOffset? queryOn = default, int? count = default, KnowledgeBaseSearchIndexActivityArguments searchIndexArguments = default)
+        {
+            return new KnowledgeBaseSearchIndexActivityRecord(
+                id,
+                KnowledgeBaseActivityRecordType.SearchIndex,
+                elapsedMs,
+                error,
+                additionalBinaryDataProperties: null,
+                knowledgeSourceName,
+                queryOn,
+                count,
+                searchIndexArguments);
+        }
+
+        /// <summary> Represents the arguments the search index retrieval activity was run with. </summary>
+        /// <param name="search"> The search string used to query the search index. </param>
+        /// <param name="filter"> The filter string. </param>
+        /// <param name="sourceDataFields"> What fields were selected for search. </param>
+        /// <param name="searchFields"> What fields were searched against. </param>
+        /// <param name="semanticConfigurationName"> What semantic configuration was used from the search index. </param>
+        /// <returns> A new <see cref="KnowledgeBases.Models.KnowledgeBaseSearchIndexActivityArguments"/> instance for mocking. </returns>
+        public static KnowledgeBaseSearchIndexActivityArguments KnowledgeBaseSearchIndexActivityArguments(string search = default, string filter = default, IEnumerable<SearchIndexFieldReference> sourceDataFields = default, IEnumerable<SearchIndexFieldReference> searchFields = default, string semanticConfigurationName = default)
+        {
+            sourceDataFields ??= new ChangeTrackingList<SearchIndexFieldReference>();
+            searchFields ??= new ChangeTrackingList<SearchIndexFieldReference>();
+
+            return new KnowledgeBaseSearchIndexActivityArguments(
+                search,
+                filter,
+                sourceDataFields.ToList(),
+                searchFields.ToList(),
+                semanticConfigurationName,
+                additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> Represents a azure blob retrieval activity record. </summary>
+        /// <param name="id"> The ID of the activity record. </param>
+        /// <param name="elapsedMs"> The elapsed time in milliseconds for the retrieval activity. </param>
+        /// <param name="error"> The error detail explaining why the operation failed. This property is only included when the activity does not succeed. </param>
+        /// <param name="knowledgeSourceName"> The knowledge source for the retrieval activity. </param>
+        /// <param name="queryOn"> The query time for this retrieval activity. </param>
+        /// <param name="count"> The count of documents retrieved that were sufficiently relevant to pass the reranker threshold. </param>
+        /// <param name="azureBlobArguments"> The azure blob arguments for the retrieval activity. </param>
+        /// <returns> A new <see cref="KnowledgeBases.Models.KnowledgeBaseAzureBlobActivityRecord"/> instance for mocking. </returns>
+        public static KnowledgeBaseAzureBlobActivityRecord KnowledgeBaseAzureBlobActivityRecord(int id = default, int? elapsedMs = default, KnowledgeBaseErrorDetail error = default, string knowledgeSourceName = default, DateTimeOffset? queryOn = default, int? count = default, KnowledgeBaseAzureBlobActivityArguments azureBlobArguments = default)
+        {
+            return new KnowledgeBaseAzureBlobActivityRecord(
+                id,
+                KnowledgeBaseActivityRecordType.AzureBlob,
+                elapsedMs,
+                error,
+                additionalBinaryDataProperties: null,
+                knowledgeSourceName,
+                queryOn,
+                count,
+                azureBlobArguments);
+        }
+
+        /// <summary> Represents the arguments the azure blob retrieval activity was run with. </summary>
+        /// <param name="search"> The search string used to query blob contents. </param>
+        /// <returns> A new <see cref="KnowledgeBases.Models.KnowledgeBaseAzureBlobActivityArguments"/> instance for mocking. </returns>
+        public static KnowledgeBaseAzureBlobActivityArguments KnowledgeBaseAzureBlobActivityArguments(string search = default)
+        {
+            return new KnowledgeBaseAzureBlobActivityArguments(search, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> Represents a indexed OneLake retrieval activity record. </summary>
+        /// <param name="id"> The ID of the activity record. </param>
+        /// <param name="elapsedMs"> The elapsed time in milliseconds for the retrieval activity. </param>
+        /// <param name="error"> The error detail explaining why the operation failed. This property is only included when the activity does not succeed. </param>
+        /// <param name="knowledgeSourceName"> The knowledge source for the retrieval activity. </param>
+        /// <param name="queryOn"> The query time for this retrieval activity. </param>
+        /// <param name="count"> The count of documents retrieved that were sufficiently relevant to pass the reranker threshold. </param>
+        /// <param name="indexedOneLakeArguments"> The indexed OneLake arguments for the retrieval activity. </param>
+        /// <returns> A new <see cref="KnowledgeBases.Models.KnowledgeBaseIndexedOneLakeActivityRecord"/> instance for mocking. </returns>
+        public static KnowledgeBaseIndexedOneLakeActivityRecord KnowledgeBaseIndexedOneLakeActivityRecord(int id = default, int? elapsedMs = default, KnowledgeBaseErrorDetail error = default, string knowledgeSourceName = default, DateTimeOffset? queryOn = default, int? count = default, KnowledgeBaseIndexedOneLakeActivityArguments indexedOneLakeArguments = default)
+        {
+            return new KnowledgeBaseIndexedOneLakeActivityRecord(
+                id,
+                KnowledgeBaseActivityRecordType.IndexedOneLake,
+                elapsedMs,
+                error,
+                additionalBinaryDataProperties: null,
+                knowledgeSourceName,
+                queryOn,
+                count,
+                indexedOneLakeArguments);
+        }
+
+        /// <summary> Represents the arguments the indexed OneLake retrieval activity was run with. </summary>
+        /// <param name="search"> The search string used to query indexed OneLake contents. </param>
+        /// <returns> A new <see cref="KnowledgeBases.Models.KnowledgeBaseIndexedOneLakeActivityArguments"/> instance for mocking. </returns>
+        public static KnowledgeBaseIndexedOneLakeActivityArguments KnowledgeBaseIndexedOneLakeActivityArguments(string search = default)
+        {
+            return new KnowledgeBaseIndexedOneLakeActivityArguments(search, additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> Represents a web retrieval activity record. </summary>
+        /// <param name="id"> The ID of the activity record. </param>
+        /// <param name="elapsedMs"> The elapsed time in milliseconds for the retrieval activity. </param>
+        /// <param name="error"> The error detail explaining why the operation failed. This property is only included when the activity does not succeed. </param>
+        /// <param name="knowledgeSourceName"> The knowledge source for the retrieval activity. </param>
+        /// <param name="queryOn"> The query time for this retrieval activity. </param>
+        /// <param name="count"> The count of documents retrieved that were sufficiently relevant to pass the reranker threshold. </param>
+        /// <param name="webArguments"> The web arguments for the retrieval activity. </param>
+        /// <returns> A new <see cref="KnowledgeBases.Models.KnowledgeBaseWebActivityRecord"/> instance for mocking. </returns>
+        public static KnowledgeBaseWebActivityRecord KnowledgeBaseWebActivityRecord(int id = default, int? elapsedMs = default, KnowledgeBaseErrorDetail error = default, string knowledgeSourceName = default, DateTimeOffset? queryOn = default, int? count = default, KnowledgeBaseWebActivityArguments webArguments = default)
+        {
+            return new KnowledgeBaseWebActivityRecord(
+                id,
+                KnowledgeBaseActivityRecordType.Web,
+                elapsedMs,
+                error,
+                additionalBinaryDataProperties: null,
+                knowledgeSourceName,
+                queryOn,
+                count,
+                webArguments);
+        }
+
+        /// <summary> Represents the arguments the web retrieval activity was run with. </summary>
+        /// <param name="search"> The search string used to query the web. </param>
+        /// <param name="language"> The language for the retrieval activity. </param>
+        /// <param name="market"> The market for the retrieval activity. </param>
+        /// <param name="count"> The number of web results returned. </param>
+        /// <param name="freshness"> The freshness for the retrieval activity. </param>
+        /// <returns> A new <see cref="KnowledgeBases.Models.KnowledgeBaseWebActivityArguments"/> instance for mocking. </returns>
+        public static KnowledgeBaseWebActivityArguments KnowledgeBaseWebActivityArguments(string search = default, string language = default, string market = default, int? count = default, string freshness = default)
+        {
+            return new KnowledgeBaseWebActivityArguments(
+                search,
+                language,
+                market,
+                count,
+                freshness,
+                additionalBinaryDataProperties: null);
         }
 
         /// <summary> Represents an LLM web summarization activity record. </summary>
@@ -3480,7 +3636,7 @@ namespace Azure.Search.Documents.Models
 
         /// <summary>
         /// Base type for references.
-        /// Please note this is the abstract base class. The derived classes available for instantiation are: <see cref="KnowledgeBases.Models.KnowledgeBaseSearchIndexReference"/>, <see cref="KnowledgeBases.Models.KnowledgeBaseAzureBlobReference"/>, <see cref="KnowledgeBases.Models.KnowledgeBaseIndexedOneLakeReference"/>, and <see cref="KnowledgeBases.Models.KnowledgeBaseWebReference"/>.
+        /// Please note this is the abstract base class. The derived classes available for instantiation are: <see cref="KnowledgeBases.Models.KnowledgeBaseAzureBlobReference"/>, <see cref="KnowledgeBases.Models.KnowledgeBaseIndexedOneLakeReference"/>, <see cref="KnowledgeBases.Models.KnowledgeBaseSearchIndexReference"/>, and <see cref="KnowledgeBases.Models.KnowledgeBaseWebReference"/>.
         /// </summary>
         /// <param name="type"> The type of the reference. </param>
         /// <param name="id"> The ID of the reference. </param>
@@ -3585,6 +3741,38 @@ namespace Azure.Search.Documents.Models
                 additionalBinaryDataProperties: null,
                 url,
                 title);
+        }
+
+        /// <summary> Request body for resync indexer operation. </summary>
+        /// <param name="options"> Re-sync options that have been pre-defined from data source. </param>
+        /// <returns> A new <see cref="Indexes.Models.IndexerResyncBody"/> instance for mocking. </returns>
+        public static IndexerResyncBody IndexerResyncBody(IEnumerable<IndexerResyncOption> options = default)
+        {
+            options ??= new ChangeTrackingList<IndexerResyncOption>();
+
+            return new IndexerResyncBody(options.ToList(), additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The type of the keysOrIds. </summary>
+        /// <param name="documentKeys"> document keys to be reset. </param>
+        /// <param name="dataSourceDocumentIds"> datasource document identifiers to be reset. </param>
+        /// <returns> A new <see cref="Indexes.Models.ResetDocumentOptions"/> instance for mocking. </returns>
+        public static ResetDocumentOptions ResetDocumentOptions(IEnumerable<string> documentKeys = default, IEnumerable<string> dataSourceDocumentIds = default)
+        {
+            documentKeys ??= new ChangeTrackingList<string>();
+            dataSourceDocumentIds ??= new ChangeTrackingList<string>();
+
+            return new ResetDocumentOptions(documentKeys.ToList(), dataSourceDocumentIds.ToList(), additionalBinaryDataProperties: null);
+        }
+
+        /// <summary> The type of the skill names. </summary>
+        /// <param name="skillNameList"> the names of skills to be reset. </param>
+        /// <returns> A new <see cref="Indexes.Models.ResetSkillsOptions"/> instance for mocking. </returns>
+        public static ResetSkillsOptions ResetSkillsOptions(IEnumerable<string> skillNameList = default)
+        {
+            skillNameList ??= new ChangeTrackingList<string>();
+
+            return new ResetSkillsOptions(skillNameList.ToList(), additionalBinaryDataProperties: null);
         }
 
         /// <summary> Initializes a new instance of <see cref="SearchModelFactory.SearchIndexer(string,string,string,string,string,Indexes.Models.IndexingSchedule,Indexes.Models.IndexingParameters,IList{Indexes.Models.FieldMapping},IList{Indexes.Models.FieldMapping},bool?,string,SearchResourceEncryptionKey,IDictionary{string,BinaryData})"/>. </summary>

@@ -86,7 +86,7 @@ namespace Azure.Search.Documents.Indexes.Models
             {
                 writer.WritePropertyName("value"u8);
                 writer.WriteStartArray();
-                foreach (SearchAlias item in Aliases)
+                foreach (SearchAlias item in Value)
                 {
                     writer.WriteObjectValue(item, options);
                 }
@@ -134,7 +134,7 @@ namespace Azure.Search.Documents.Indexes.Models
             {
                 return null;
             }
-            IReadOnlyList<SearchAlias> aliases = default;
+            IReadOnlyList<SearchAlias> value = default;
             IDictionary<string, BinaryData> additionalBinaryDataProperties = new ChangeTrackingDictionary<string, BinaryData>();
             foreach (var prop in element.EnumerateObject())
             {
@@ -145,15 +145,15 @@ namespace Azure.Search.Documents.Indexes.Models
                     {
                         array.Add(SearchAlias.DeserializeSearchAlias(item, options));
                     }
-                    aliases = array;
+                    value = array;
                     continue;
                 }
                 if (options.Format != "W")
                 {
-                    additionalBinaryDataProperties.Add(prop.Name, BinaryData.FromString(prop.Value.GetRawText()));
+                    additionalBinaryDataProperties.Add(prop.Name, prop.Value.GetUtf8Bytes());
                 }
             }
-            return new ListAliasesResult(aliases, additionalBinaryDataProperties);
+            return new ListAliasesResult(value, additionalBinaryDataProperties);
         }
     }
 }
